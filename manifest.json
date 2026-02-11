@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "SyncDeleter",
+  "version": "1.0",
+  "description": "Automatically deletes browser history when deleting video history on Bilibili and YouTube.",
+  "permissions": [
+    "history"
+  ],
+  "host_permissions": [
+    "*://*.bilibili.com/*",
+    "*://*.youtube.com/*",
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content_bilibili.js"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content_youtube.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}
